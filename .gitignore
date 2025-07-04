@@ -8,6 +8,7 @@ test/
 files/
 services/server/bin/
 services/secrets.env
+*/built/
 
 doc/
 docs/resources/
