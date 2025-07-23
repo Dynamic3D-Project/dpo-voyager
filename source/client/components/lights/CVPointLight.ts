@@ -41,6 +41,7 @@ export default class CVPointLight extends CPointLight implements ICVLight
             this.ins.shadowEnabled,
             this.ins.shadowResolution,
             this.ins.shadowBlur,
+            this.ins.type,
         ];
     }
 

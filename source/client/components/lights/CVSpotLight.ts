@@ -43,6 +43,7 @@ export default class CVSpotLight extends CSpotLight implements ICVLight
             this.ins.shadowEnabled,
             this.ins.shadowResolution,
             this.ins.shadowBlur,
+            this.ins.type,
         ];
     }
 

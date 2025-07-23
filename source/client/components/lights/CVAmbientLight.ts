@@ -35,6 +35,7 @@ export default class CVAmbienLight extends CAmbientLight implements ICVLight
         return [
             this.ins.color,
             this.ins.intensity,
+            this.ins.type,
         ];
     }
 
