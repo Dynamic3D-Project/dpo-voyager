@@ -43,7 +43,7 @@ export default class CVSpotLight extends CSpotLight implements ICVLight
             this.ins.shadowEnabled,
             this.ins.shadowResolution,
             this.ins.shadowBlur,
-            this.ins.type,
+            this.ins.lightType,
         ];
     }
 
@@ -80,6 +80,7 @@ export default class CVSpotLight extends CSpotLight implements ICVLight
         ins.copyValues({
             color: data.color !== undefined ? data.color : ins.color.schema.preset,
             intensity: data.intensity !== undefined ? data.intensity : ins.intensity.schema.preset,
+            lightType: "spot",
 
             position: ins.position.schema.preset,
             target: ins.target.schema.preset,

@@ -36,6 +36,8 @@ import CVAssetManager from "./CVAssetManager";
 import CVAnalytics from "client/components/CVAnalytics";
 import { ELanguageType } from "client/schema/common";
 import CVModel2 from "./CVModel2";
+import CVLightManager from "./CVLightManager";
+import { CLight } from "./lights/CVLight";
 
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -227,6 +229,14 @@ export default class CVDocument extends CRenderGraph
         }
 
         //pathMap.forEach((comp, path) => console.log("CVDocument - pathMap: %s - '%s'", path, comp.displayName));
+        
+        let lightManager = this.getMainComponent(CVLightManager);
+        pathMap.forEach((light, key) => {
+            if (key.startsWith("light/")) {
+                console.debug(`Adding light from document: ${light.id}: ${light.node.name}`);
+                lightManager.addLight(light as CLight);
+            }
+        });
 
         if (assetPath) {
             this.outs.assetPath.setValue(assetPath);

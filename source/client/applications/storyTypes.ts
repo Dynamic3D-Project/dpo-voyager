@@ -17,6 +17,7 @@
 
 import CVStoryApplication from "../components/CVStoryApplication";
 import CVAssetWriter from "../components/CVAssetWriter";
+import CVLightManager from "../components/CVLightManager";
 import CVMediaManager from "../components/CVMediaManager";
 
 import CVTaskProvider from "../components/CVTaskProvider";
@@ -42,6 +43,7 @@ import NVTasks from "../nodes/NVTasks";
 const types = [
     CVStoryApplication,
     CVAssetWriter,
+    CVLightManager,
     CVMediaManager,
     CVStandaloneFileManager,
 

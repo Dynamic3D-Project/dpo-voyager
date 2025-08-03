@@ -35,7 +35,7 @@ export default class CVRectLight extends CRectLight implements ICVLight
         return [
             this.ins.color,
             this.ins.intensity,
-            this.ins.type,
+            this.ins.lightType,
         ];
     }
 

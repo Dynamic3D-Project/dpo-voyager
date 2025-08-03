@@ -29,6 +29,7 @@ import CVStoryApplication from "../components/CVStoryApplication";
 
 import CVAssetReader from "../components/CVAssetReader";
 import CVAssetManager from "../components/CVAssetManager";
+import CVLightManager from "../components/CVLightManager";
 import CVMediaManager from "../components/CVMediaManager";
 
 import CVDocumentProvider from "../components/CVDocumentProvider";
@@ -76,6 +77,9 @@ export default class StoryApplication
     protected get assetManager() {
         return this.system.getMainComponent(CVAssetManager);
     }
+    protected get lightManager() {
+        return this.system.getMainComponent(CVLightManager);
+    }
     protected get mediaManager() {
         return this.system.getMainComponent(CVMediaManager);
     }
@@ -100,7 +104,7 @@ export default class StoryApplication
         // add story components
         this.system.graph.createCustomNode(NVoyagerStory, "Story");
         this.system.graph.createCustomNode(NVTasks, "Tasks");
-
+        
         // enable viewport brackets
         this.system.getMainComponent(CPickSelection).ins.viewportBrackets.setValue(true);
 
@@ -112,6 +116,8 @@ export default class StoryApplication
         // initialize default document
         this.documentProvider.createDocument(documentTemplate as any);
         this.evaluateProps();
+
+        // TODO: add lights to lightManager from document here?
     }
 
     setBaseUrl(url: string)

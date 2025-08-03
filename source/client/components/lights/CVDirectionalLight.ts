@@ -42,7 +42,7 @@ export default class CVDirectionalLight extends CDirectionalLight implements ICV
             this.ins.shadowSize,
             this.ins.shadowResolution,
             this.ins.shadowBlur,
-            this.ins.type,
+            this.ins.lightType,
         ];
     }
 
@@ -77,6 +77,7 @@ export default class CVDirectionalLight extends CDirectionalLight implements ICV
         ins.copyValues({
             color: data.color !== undefined ? data.color : ins.color.schema.preset,
             intensity: data.intensity !== undefined ? data.intensity : ins.intensity.schema.preset,
+            lightType: "directional",
 
             position: ins.position.schema.preset,
             target: ins.target.schema.preset,
