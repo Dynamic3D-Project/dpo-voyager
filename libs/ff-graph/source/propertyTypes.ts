@@ -33,6 +33,7 @@ export interface IPropertySchema<T = any>
     event?: boolean;
     static?: boolean; // not linkable if true
     semantic?: string;
+    tooltip?: string;
 }
 
 export type SchemaProps<T> = Partial<IPropertySchema<T>> | T;
