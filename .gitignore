@@ -18,3 +18,4 @@ docs/resources/
 .DS_Store
 secrets.env
 .vercel
+.env*.local

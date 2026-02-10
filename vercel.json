@@ -17,6 +17,27 @@
   ],
   "headers": [
     {
+      "source": "/files/(.*)",
+      "headers": [
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        },
+        {
+          "key": "Access-Control-Allow-Methods",
+          "value": "GET, HEAD, OPTIONS, PROPFIND"
+        },
+        {
+          "key": "Access-Control-Allow-Headers",
+          "value": "Content-Type, Range, If-None-Match, If-Modified-Since"
+        },
+        {
+          "key": "Access-Control-Expose-Headers",
+          "value": "Content-Length, Content-Range, Accept-Ranges, ETag, Last-Modified"
+        }
+      ]
+    },
+    {
       "source": "/assets/(.*)",
       "headers": [
         {
@@ -27,5 +48,7 @@
     }
   ],
   "public": false,
-  "regions": ["dub1"]
+  "regions": [
+    "dub1"
+  ]
 }
