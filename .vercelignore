@@ -1,0 +1,51 @@
+# Dependencies
+node_modules/
+
+# Build artifacts
+dist/
+doc/
+
+# Development
+.vscode/
+.idea/
+test/
+
+# Server files (not needed for static deployment)
+services/server/bin/
+
+# Environment and secrets
+.env
+*.env
+secrets.env
+services/secrets.env
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Documentation build
+docs/resources/
+docs/_site/
+
+# Docker
+docker-compose.yml
+Dockerfile
+.dockerignore
+
+# Git
+.git/
+.gitignore
+
+# Model files - only deploy specific directories
+files/models/*
+# !files/models/edition-64eca653b1520537c7ac5b06/
+!files/models/chair/
+# !files/models/ewer/
+# !files/models/tusk/
+# !files/models/vase/
