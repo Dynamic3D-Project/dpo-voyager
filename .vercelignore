@@ -42,10 +42,8 @@ Dockerfile
 .git/
 .gitignore
 
-# Model files - only deploy specific directories
-files/models/*
-# !files/models/edition-64eca653b1520537c7ac5b06/
-!files/models/chair/
-# !files/models/ewer/
-# !files/models/tusk/
-# !files/models/vase/
+# Model files - stored in Vercel Blob Storage
+files/
+
+# Source test files - not needed for deployment
+source/test/
