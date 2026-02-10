@@ -15,6 +15,7 @@
         "docs": "cd docs && jekyll build",
         "doc": "typedoc --name \"Smithsonian Voyager\" --exclude \"**/node_modules/**\" --ignoreCompilerErrors --mode file --target ES6 --theme minimal --out doc/ source/",
         "test": "echo \"Error: no test specified\" && exit 1",
+        "upload-blob": "node scripts/upload-to-blob.js",
         "up": "docker compose up -d && docker compose logs -f",
         "down": "docker compose stop && docker compose rm -f -v",
         "restart": "docker compose stop && docker compose rm -f -v; docker compose up -d; docker compose logs -f",
@@ -55,6 +56,7 @@
     },
     "homepage": "https://github.com/Smithsonian/dpo-voyager#readme",
     "dependencies": {
+        "@vercel/blob": "^2.2.0",
         "ajv": "^8.6.2",
         "buffer": "^6.0.3",
         "client-zip": "^2.5.0",
