@@ -65,7 +65,7 @@ app.disable('x-powered-by');
 
 // logging
 if (devMode) {
-    app.use(morgan("tiny"));
+    app.use(morgan(":date[iso] :remote-addr :method :url :status :res[content-length] - :response-time ms"));
 }
 
 // static file server
