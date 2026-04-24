@@ -6,13 +6,14 @@ on:
     workflow_dispatch:
         inputs:
             branch:
-                description: "Branch to build/deploy (leave empty to use the selected run
+                description: "Branch to build/deploy (leave empty to use the current run
                     branch)"
                 required: false
                 default: ""
                 type: string
             commit:
-                description: "Exact commit SHA to build/deploy (overrides branch)"
+                description: "Exact commit SHA to build/deploy (overrides branch; leave empty to
+                    use current run branch)"
                 required: false
                 default: ""
                 type: string
@@ -35,16 +36,20 @@ jobs:
             - id: pick
               shell: bash
               run: |
-                  BRANCH="${{ github.event.inputs.branch }}"
-                  COMMIT="${{ github.event.inputs.commit }}"
+                  BRANCH_RAW="${{ github.event.inputs.branch }}"
+                  COMMIT_RAW="${{ github.event.inputs.commit }}"
 
-                  # Priority: commit > branch > default branch at dispatch time
+                  # Normalize optional inputs (trim whitespace)
+                  BRANCH="$(echo "$BRANCH_RAW" | xargs)"
+                  COMMIT="$(echo "$COMMIT_RAW" | xargs)"
+
+                  # Priority: commit > branch > current run branch
                   if [ -n "$COMMIT" ]; then
                     echo "selected_ref=$COMMIT" >> "$GITHUB_OUTPUT"
                   elif [ -n "$BRANCH" ]; then
                     echo "selected_ref=$BRANCH" >> "$GITHUB_OUTPUT"
                   else
-                    echo "selected_ref=${{ github.ref_name }}" >> "$GITHUB_OUTPUT"
+                    echo "selected_ref=$GITHUB_REF_NAME" >> "$GITHUB_OUTPUT"
                   fi
 
     build-and-deploy:
