@@ -998,6 +998,7 @@ export default class CVModel2 extends CObject3D
 
         material.defines["MODE_NORMALS"] = false;
         material.defines["MODE_XRAY"] = false;
+        material.defines["MODE_LIGHT_QUANTITY"] = false;
         material.defines["OBJECTSPACE_NORMALMAP"] = !!(material.normalMap && material.normalMapType === ObjectSpaceNormalMap);
 
         material.side = material.defines["CUT_PLANE"] ? DoubleSide : material.side;
@@ -1059,6 +1060,39 @@ export default class CVModel2 extends CObject3D
                 material.blending = AdditiveBlending;
                 material.transparent = true;
                 material.depthWrite = false;
+                break;
+
+            case EShaderMode.LightQuantity:
+                material.userData.paramCopy = {
+                    color: material.color,
+                    map: material.map,
+                    roughness: material.roughness,
+                    metalness: material.metalness,
+                    emissive: material.emissive,
+                    emissiveMap: material.emissiveMap,
+                    envMap: material.envMap,
+                    blending: material.blending,
+                    transparent: material.transparent,
+                    depthWrite: material.depthWrite,
+                };
+
+                if(material.type == "MeshPhysicalMaterial") {
+                    const physMat = material as MeshPhysicalMaterial;
+                    material.userData.paramCopy["transmission"] = physMat.transmission;
+                    physMat.transmission = 0;
+                }
+
+                material.color = new Color(1, 1, 1);
+                material.map = null;
+                material.roughness = 1;
+                material.metalness = 0;
+                material.emissive = new Color(0, 0, 0);
+                material.emissiveMap = null;
+                material.envMap = null;
+                material.blending = NoBlending;
+                material.transparent = false;
+                material.depthWrite = true;
+                material.defines["MODE_LIGHT_QUANTITY"] = true;
                 break;
 
             case EShaderMode.Wireframe:

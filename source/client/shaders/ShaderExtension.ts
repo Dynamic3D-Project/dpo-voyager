@@ -75,12 +75,30 @@ export function injectFragmentShaderCode(shader: string) {
             uniform vec3 cutPlaneColor;\n \
         #endif\n \
         \n \
+        #ifdef MODE_LIGHT_QUANTITY\n \
+        vec3 heatmapColor(float t) {\n \
+            t = clamp(t, 0.0, 1.0);\n \
+            vec3 c0 = vec3(0.0, 0.0, 1.0);\n \
+            vec3 c1 = vec3(0.0, 1.0, 1.0);\n \
+            vec3 c2 = vec3(0.0, 1.0, 0.0);\n \
+            vec3 c3 = vec3(1.0, 1.0, 0.0);\n \
+            vec3 c4 = vec3(1.0, 0.0, 0.0);\n \
+            if (t < 0.25) return mix(c0, c1, t * 4.0);\n \
+            else if (t < 0.5) return mix(c1, c2, (t - 0.25) * 4.0);\n \
+            else if (t < 0.75) return mix(c2, c3, (t - 0.5) * 4.0);\n \
+            return mix(c3, c4, (t - 0.75) * 4.0);\n \
+        }\n \
+        #endif\n \
+        \n \
         void main() {'
     )
 
     shader = shader.replace(
         '#include <opaque_fragment>',
-        '#include <opaque_fragment>\n \
+        '#ifdef MODE_LIGHT_QUANTITY\n \
+        vec3 sv_diffuseLight = reflectedLight.directDiffuse + reflectedLight.indirectDiffuse;\n \
+        #endif\n \
+        #include <opaque_fragment>\n \
         \n \
         #ifdef USE_ZONEMAP\n \
             vec4 zoneColor = texture2D(zoneMap, vZoneUv);\n \
@@ -110,6 +128,11 @@ export function injectFragmentShaderCode(shader: string) {
         #ifdef MODE_XRAY\n \
             gl_FragColor = vec4(vec3(0.4, 0.7, 1.0) * vIntensity, 1.0);\n \
         #endif\n \
+        \n \
+        #ifdef MODE_LIGHT_QUANTITY\n \
+            float lum = dot(sv_diffuseLight, vec3(0.2126, 0.7152, 0.0722));\n \
+            gl_FragColor = vec4(heatmapColor(clamp(lum, 0.0, 1.0)), 1.0);\n \
+        #endif\n \
         }'
     )
 
@@ -137,6 +160,7 @@ export function addCustomMaterialDefines(material: Material) {
     material.defines["OBJECTSPACE_NORMALMAP"] = false;
     material.defines["MODE_NORMALS"] = false;
     material.defines["MODE_XRAY"] = false;
+    material.defines["MODE_LIGHT_QUANTITY"] = false;
     material.defines["CUT_PLANE"] = false;
     material.defines["USE_ZONEMAP"] = false;
     material.defines["OVERLAY_ALPHA"] = false;
