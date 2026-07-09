@@ -38,6 +38,7 @@
 	"XRay" : "XRay",
 	"Normals" : "Normals",
 	"Wireframe" : "Wireframe",
+	"LightQuantity" : "Light Quantity",
 	"Background" : "Background",
 	"Grid" : "Grid",
 	"Floor" : "Floor",
