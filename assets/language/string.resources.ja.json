@@ -38,7 +38,7 @@
 	"XRay" : "X線",
 	"Normals" : "法線",
 	"Wireframe" : "ワイヤーフレーム",
-	"LightQuantity" : "光量",
+	"IlluminanceMap" : "照度マップ",
 	"Background" : "背景",
 	"Grid" : "グリッド",
 	"Floor" : "床",

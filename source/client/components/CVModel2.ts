@@ -1062,7 +1062,7 @@ export default class CVModel2 extends CObject3D
                 material.depthWrite = false;
                 break;
 
-            case EShaderMode.LightQuantity:
+            case EShaderMode.IlluminanceMap:
                 material.userData.paramCopy = {
                     color: material.color,
                     map: material.map,

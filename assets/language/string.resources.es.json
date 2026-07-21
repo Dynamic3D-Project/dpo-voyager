@@ -38,7 +38,7 @@
 	"XRay" : "Rayos X",
 	"Normals" : "Normales",
 	"Wireframe" : "Malla de alambre",
-	"LightQuantity" : "Cantidad de luz",
+	"IlluminanceMap" : "Mapa de iluminancia",
 	"Background" : "Fondo",
 	"Grid" : "Cuadrícula",
 	"Floor" : "Piso",

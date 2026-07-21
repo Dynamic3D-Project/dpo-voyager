@@ -38,7 +38,7 @@
     "XRay": "Röntgen",
     "Normals": "Normale",
     "Wireframe": "Wireframe",
-    "LightQuantity": "Lichtmenge",
+    "IlluminanceMap": "Beleuchtungsstärkekarte",
     "Background": "Hintergrund",
     "Grid": "Gitter",
     "Floor": "Boden",

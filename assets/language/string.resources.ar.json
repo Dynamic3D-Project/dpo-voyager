@@ -38,7 +38,7 @@
 	"XRay" : "الأشعة السينية",
 	"Normals" : "الأوضاع الطبيعية",
 	"Wireframe" : "الإطار السلكي",
-	"LightQuantity" : "كمية الضوء",
+	"IlluminanceMap" : "خريطة الإضاءة",
 	"Background" : "خلفية",
 	"Grid" : "شبكة",
 	"Floor" : "أرضية",

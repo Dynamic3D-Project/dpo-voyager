@@ -38,7 +38,7 @@
     "XRay": "Transparant",
     "Normals": "Normalen",
     "Wireframe": "Draadmodel",
-    "LightQuantity": "Lichthoeveelheid",
+    "IlluminanceMap": "Verlichtingssterktekaart",
     "Background": "Achtergrond",
     "Grid": "Raster",
     "Floor": "Ondergrond",
