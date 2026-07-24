@@ -42,6 +42,7 @@ export interface ISetup
     navigation?: INavigation;
     background?: IBackground;
     environment?: IEnvironment,
+    fog?: IFog;
     language?: ILanguage,
     floor?: IFloor;
     grid?: IGrid;
@@ -207,4 +208,11 @@ export interface ILanguageOption
 {
     name: string;
     id: ELanguageType;
+}
+
+export interface IFog
+{
+    intensity?: number;
+    color?: number[];
+    enabled?: boolean;
 }

@@ -69,6 +69,7 @@ import CVSlicer from "../components/CVSlicer";
 import CVTours from "../components/CVTours";
 import CVSnapshots from "../components/CVSnapshots";
 import CVEnvironment from "../components/CVEnvironment";
+import CVFog from "../components/CVFog";
 import CVARManager from "../components/CVARManager";
 import CVLanguageManager from "../components/CVLanguageManager";
 import CVAudioManager from "client/components/CVAudioManager";
@@ -144,6 +145,7 @@ const types = [
     CVTours,
     CVSnapshots,
     CVEnvironment,
+    CVFog,
     CVLanguageManager,
     CVAudioManager,
     CVActionManager,

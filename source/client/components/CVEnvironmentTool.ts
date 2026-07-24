@@ -65,6 +65,7 @@ export class EnvironmentToolView extends ToolView<CVEnvironmentTool>
         //const isLinear = style === EBackgroundStyle.LinearGradient;
 
         const environment = setup.environment;
+        const fog = setup.fog;
         const language = setup.language;
 
         //let name0 = isSolid ? " " : (isLinear ? "Top" : "Inner");
@@ -80,6 +81,8 @@ export class EnvironmentToolView extends ToolView<CVEnvironmentTool>
                 <sv-property-boolean .property=${floor.ins.visible} .language=${language} name=${language.getLocalizedString("Floor")}></sv-property-boolean>
                 <sv-property-color title="Floor Color" .compact=${true} .floating=${false} class="sv-nogap" .property=${floor.ins.color} name=" "></sv-property-color>
                 <sv-property-options .property=${environment.ins.imageIndex} name="Env Map"></sv-property-options>
+                <sv-property-slider .property=${fog.ins.intensity} name="Fog Intensity"></sv-property-slider>
+                <sv-property-color name="Fog Color" .compact=${true} .floating=${false} class="sv-nogap" .property=${fog.ins.color} name=" "></sv-property-color>
             </div>
         </div>`;
     }
@@ -89,10 +92,14 @@ export class EnvironmentToolView extends ToolView<CVEnvironmentTool>
         if (previous) {
             const background = previous.setup.background;
             background.ins.style.off("value", this.onUpdate, this);
+            const fog = previous.setup.fog;
+            fog.ins.intensity.off("value", this.onUpdate, this);
         }
         if (next) {
             const background = next.setup.background;
             background.ins.style.on("value", this.onUpdate, this);
+            const fog = next.setup.fog;
+            fog.ins.intensity.on("value", this.onUpdate, this);
         }
 
         this.requestUpdate();

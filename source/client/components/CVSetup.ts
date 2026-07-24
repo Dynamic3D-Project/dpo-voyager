@@ -34,6 +34,7 @@ import CVSlicer from "./CVSlicer";
 import CVTours from "./CVTours";
 import CVSnapshots from "./CVSnapshots";
 import CVEnvironment from "./CVEnvironment";
+import CVFog from "./CVFog";
 import CVLanguageManager from "./CVLanguageManager";
 import CVAudioManager from "./CVAudioManager";
 import CVDerivativesController from "./CVDerivativesController";
@@ -66,6 +67,7 @@ export default class CVSetup extends Component
         "derivatives": CVDerivativesController, 
         "background": CVBackground,
         "environment": CVEnvironment,
+        "fog": CVFog,
         "language": CVLanguageManager,
         "floor": CVFloor,
         "grid": CVGrid,
@@ -96,6 +98,7 @@ export default class CVSetup extends Component
     tours: CVTours;
     snapshots: CVSnapshots;
     environment: CVEnvironment;
+    fog: CVFog;
     language: CVLanguageManager;
     audio: CVAudioManager;
     actions: CVActionManager;
