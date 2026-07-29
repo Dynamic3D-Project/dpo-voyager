@@ -48,6 +48,7 @@ import { clamp } from "client/utils/Helpers"
 import CVScene from "client/components/CVScene";
 import CVAnnotationView from "client/components/CVAnnotationView";
 import { ELanguageType } from "client/schema/common";
+import CVNode from "client/components/CVNode";
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -760,6 +761,52 @@ Version: ${ENV_VERSION}
         const reader = this.system.getMainComponent(CVDocumentProvider).activeComponent.setup.reader;
         reader.ins.enabled.setValue(true);
         reader.ins.articleId.setValue(id);
+    }
+
+    getModels()
+    {
+        const scene = this.system.getComponent(CVScene);
+        const models = scene.models || [];
+
+        const getModelInfo = (model: any) => {
+            const info: any = {
+                id: model.id,
+                name: model.ins.name.value
+            };
+
+            const transform = (model.parentComponent as CVNode).transform;
+            for (const key of Object.keys(transform.ins)) {
+                info[key] = transform.ins[key].value;
+            }
+
+            return info;
+        };
+
+        return models.map(getModelInfo);
+    }
+
+    transformModel( modelId: string, params?: { [key: string]: any } )
+    {
+        const scene = this.system.getComponent(CVScene);
+        const models = scene.models || [];
+
+        const model = models.find(m => m.id === modelId);
+        if (!model) {
+            console.error(`Error: setModel id "${modelId}" not found.`);
+            return;
+        }
+      
+        const transform = (model.parentComponent as CVNode).transform;
+        const effectiveParams = params || {};
+
+        for (const [key, value] of Object.entries(effectiveParams)) {
+            if (transform.ins && transform.ins[key]) {
+                transform.ins[key].setValue(value);
+            }
+            else {
+                console.warn(`Warning: setModel property "${key}" not found in transform.ins.`);
+            }
+        }
     }
 
     resetViewer(){
